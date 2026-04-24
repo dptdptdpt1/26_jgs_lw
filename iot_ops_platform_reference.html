@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智能设备运维平台 · 软考论文参考手册</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a2e;
+  --ink-soft: #2d2d4e;
+  --ink-muted: #6b6b8a;
+  --ink-faint: #a8a8c0;
+  --paper: #fafaf7;
+  --paper-warm: #f4f3ee;
+  --paper-card: #ffffff;
+  --accent: #c84b31;
+  --accent-soft: #f0e6e3;
+  --accent-2: #2563a8;
+  --accent-2-soft: #e3edf8;
+  --accent-3: #1a7a5e;
+  --accent-3-soft: #e3f5ef;
+  --accent-4: #7c4dab;
+  --accent-4-soft: #f0eaf8;
+  --accent-5: #b8860b;
+  --accent-5-soft: #faf3dd;
+  --border: #e0dfd8;
+  --border-soft: #eeeee8;
+  --mono: 'JetBrains Mono', monospace;
+  --serif: 'Noto Serif SC', serif;
+  --sans: 'Noto Sans SC', sans-serif;
+  --shadow: 0 1px 3px rgba(26,26,46,0.08), 0 4px 12px rgba(26,26,46,0.04);
+  --shadow-hover: 0 2px 8px rgba(26,26,46,0.12), 0 8px 24px rgba(26,26,46,0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+/* ── Layout ── */
+.layout { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+
+/* ── Sidebar ── */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--ink);
+  color: rgba(255,255,255,0.85);
+  padding: 2rem 0;
+  scrollbar-width: none;
+}
+.sidebar::-webkit-scrollbar { display: none; }
+
+.sidebar-logo {
+  padding: 0 1.5rem 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 1rem;
+}
+.sidebar-logo .title {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.4;
+}
+.sidebar-logo .sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 4px;
+  font-family: var(--mono);
+}
+
+.nav-group { margin-bottom: 0.25rem; }
+.nav-group-label {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  padding: 0.75rem 1.5rem 0.25rem;
+  font-weight: 500;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.45rem 1.5rem;
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  transition: all 0.15s;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+}
+.nav-item:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.06);
+  border-left-color: rgba(255,255,255,0.3);
+}
+.nav-item.active {
+  color: #fff;
+  background: rgba(200,75,49,0.2);
+  border-left-color: var(--accent);
+}
+.nav-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: currentColor; opacity: 0.5; flex-shrink: 0;
+}
+
+/* ── Main ── */
+.main { padding: 0; overflow-x: hidden; }
+
+/* ── Hero ── */
+.hero {
+  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 100%);
+  color: #fff;
+  padding: 4rem 4rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: rgba(200,75,49,0.12);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 20%;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(37,99,168,0.1);
+}
+.hero-tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: rgba(200,75,49,0.3);
+  color: #ffb4a0;
+  padding: 4px 12px;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  font-family: var(--mono);
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+.hero p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  max-width: 500px;
+  position: relative;
+}
+.hero-meta {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  position: relative;
+}
+.hero-meta-item { text-align: center; }
+.hero-meta-num {
+  font-family: var(--mono);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #fff;
+}
+.hero-meta-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 2px;
+}
+
+/* ── Content ── */
+.content { padding: 3rem 4rem; max-width: 900px; }
+.section { margin-bottom: 4rem; }
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1.5px solid var(--border);
+}
+.section-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 500;
+  background: var(--accent-soft);
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s;
+}
+.card:hover { box-shadow: var(--shadow-hover); }
+.card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-icon {
+  width: 20px; height: 20px;
+  border-radius: 4px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--mono);
+  flex-shrink: 0;
+}
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
+/* ── Arch Diagram ── */
+.arch-diagram {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.arch-layer {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border-soft);
+  transition: background 0.15s;
+}
+.arch-layer:last-child { border-bottom: none; }
+.arch-layer:hover { background: var(--paper-warm); }
+
+.arch-layer-label {
+  width: 140px;
+  flex-shrink: 0;
+  padding: 1rem 1.25rem;
+  border-right: 1px solid var(--border-soft);
+}
+.arch-layer-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.arch-layer-en {
+  font-size: 10px;
+  color: var(--ink-muted);
+  font-family: var(--mono);
+  margin-top: 2px;
+}
+.arch-layer-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  margin-bottom: 6px;
+}
+
+.arch-components {
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex: 1;
+}
+.comp-tag {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: default;
+  transition: transform 0.1s;
+}
+.comp-tag:hover { transform: translateY(-1px); }
+
+/* color variants */
+.c-red { background: var(--accent-soft); color: var(--accent); border-color: #e8c5bc; }
+.c-blue { background: var(--accent-2-soft); color: var(--accent-2); border-color: #b8d0ea; }
+.c-green { background: var(--accent-3-soft); color: var(--accent-3); border-color: #b3ddd2; }
+.c-purple { background: var(--accent-4-soft); color: var(--accent-4); border-color: #d0bde8; }
+.c-amber { background: var(--accent-5-soft); color: var(--accent-5); border-color: #dfc98a; }
+.c-gray { background: #f1f1ed; color: #555; border-color: #ddd; }
+
+/* ── Tech Table ── */
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.tech-table th {
+  text-align: left;
+  padding: 8px 12px;
+  background: var(--ink);
+  color: rgba(255,255,255,0.85);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+.tech-table th:first-child { border-radius: 6px 0 0 0; }
+.tech-table th:last-child { border-radius: 0 6px 0 0; }
+.tech-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.tech-table tr:last-child td { border-bottom: none; }
+.tech-table tr:nth-child(even) td { background: var(--paper-warm); }
+.tech-table tr:hover td { background: #edf2f8; }
+.tech-name {
+  font-family: var(--mono);
+  font-weight: 500;
+  color: var(--accent-2);
+  white-space: nowrap;
+}
+.tech-category {
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ── Flow Diagram ── */
+.flow-diagram {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+.flow-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.flow-node {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  min-width: 90px;
+}
+.flow-arrow {
+  font-size: 16px;
+  color: var(--ink-faint);
+  padding: 0 4px;
+  flex-shrink: 0;
+}
+.flow-label {
+  font-size: 10px;
+  color: var(--ink-muted);
+  font-family: var(--mono);
+  padding: 0 2px;
+}
+.flow-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 1.25rem 0 0.75rem;
+}
+
+/* ── Problem cards ── */
+.problem-card {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
+}
+.problem-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.9rem 1.25rem;
+  background: var(--paper-warm);
+  border-bottom: 1px solid var(--border-soft);
+}
+.problem-num {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--mono);
+  flex-shrink: 0;
+}
+.problem-title { font-size: 13px; font-weight: 700; color: var(--ink); }
+.problem-body { padding: 1rem 1.25rem; }
+.problem-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  align-items: baseline;
+}
+.problem-row:last-child { margin-bottom: 0; }
+.problem-key {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding-top: 2px;
+}
+
+/* ── Metrics ── */
+.metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.metric-card {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.metric-num {
+  font-family: var(--mono);
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.metric-label {
+  font-size: 11px;
+  color: var(--ink-muted);
+  line-height: 1.4;
+}
+.metric-change {
+  font-size: 11px;
+  font-family: var(--mono);
+  margin-top: 6px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* ── Quote block ── */
+.quote-block {
+  border-left: 3px solid var(--accent);
+  padding: 0.75rem 1.25rem;
+  background: var(--accent-soft);
+  border-radius: 0 6px 6px 0;
+  margin: 1rem 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-family: var(--serif);
+}
+
+/* ── Tip box ── */
+.tip-box {
+  background: var(--accent-2-soft);
+  border: 1px solid #b8d0ea;
+  border-radius: 6px;
+  padding: 0.9rem 1.25rem;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 1rem 0;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.tip-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+/* ── Tag inline ── */
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  font-family: var(--mono);
+  padding: 2px 7px;
+  border-radius: 3px;
+  margin: 1px;
+  border: 1px solid transparent;
+}
+
+/* ── Print / TOC ── */
+@media print {
+  .sidebar { display: none; }
+  .layout { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+<!-- ══ SIDEBAR ══ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="title">智能设备运维平台<br>论文参考手册</div>
+    <div class="sub">软考高级 · 系统架构师</div>
+  </div>
+
+  <nav>
+    <div class="nav-group">
+      <div class="nav-group-label">项目总览</div>
+      <a class="nav-item active" href="#overview"><span class="nav-dot"></span>项目背景与定位</a>
+      <a class="nav-item" href="#scale"><span class="nav-dot"></span>项目规模参数</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">架构设计</div>
+      <a class="nav-item" href="#arch"><span class="nav-dot"></span>整体架构分层</a>
+      <a class="nav-item" href="#arch-pattern"><span class="nav-dot"></span>架构模式选择</a>
+      <a class="nav-item" href="#data-arch"><span class="nav-dot"></span>数据架构设计</a>
+      <a class="nav-item" href="#deployment"><span class="nav-dot"></span>部署架构</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">技术选型</div>
+      <a class="nav-item" href="#tech-stack"><span class="nav-dot"></span>技术栈全景</a>
+      <a class="nav-item" href="#tech-compare"><span class="nav-dot"></span>关键技术对比</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">业务流程</div>
+      <a class="nav-item" href="#flow-data"><span class="nav-dot"></span>数据采集流程</a>
+      <a class="nav-item" href="#flow-alert"><span class="nav-dot"></span>告警处理流程</a>
+      <a class="nav-item" href="#flow-workorder"><span class="nav-dot"></span>工单管理流程</a>
+      <a class="nav-item" href="#flow-ai"><span class="nav-dot"></span>AI 预测流程</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">关键问题</div>
+      <a class="nav-item" href="#problems"><span class="nav-dot"></span>挑战与解决方案</a>
+      <a class="nav-item" href="#tradeoff"><span class="nav-dot"></span>架构权衡决策</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">成果</div>
+      <a class="nav-item" href="#metrics"><span class="nav-dot"></span>项目效果数据</a>
+      <a class="nav-item" href="#essay-tips"><span class="nav-dot"></span>论文写作要点</a>
+    </div>
+  </nav>
+</aside>
+
+<!-- ══ MAIN ══ -->
+<main class="main">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">软考高级 · 系统架构师 · 论文素材</div>
+    <h1>某汽车零部件集团<br>智能设备运维平台</h1>
+    <p>工业互联网 · 预测性维护 · 边云协同 · 实时流计算</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="hero-meta-num">5</div>
+        <div class="hero-meta-label">架构层次</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-num">8+</div>
+        <div class="hero-meta-label">核心技术栈</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-num">6</div>
+        <div class="hero-meta-label">可写题目方向</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-num">4</div>
+        <div class="hero-meta-label">核心业务流程</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ══ 1. 项目背景 ══ -->
+    <section class="section" id="overview">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">项目背景与定位</h2>
+      </div>
+      <div class="grid-2" style="margin-bottom:1rem">
+        <div class="card">
+          <div class="card-title">
+            <span class="card-icon c-red">业</span>
+            业务背景
+          </div>
+          <p style="font-size:13px;color:var(--ink-soft);line-height:1.8">
+            某汽车零部件集团拥有 <strong>6 家工厂</strong>，覆盖冲压、焊接、注塑、总装等核心产线，关键生产设备约 <strong>3200 台</strong>。原有运维模式依赖人工巡检，故障发现滞后，平均修复时间（MTTR）高达 <strong>4.2 小时</strong>，每年因非计划停机造成的产能损失超过 <strong>2000 万元</strong>。
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-title">
+            <span class="card-icon c-blue">目</span>
+            建设目标
+          </div>
+          <ul style="font-size:13px;color:var(--ink-soft);line-height:2;padding-left:1rem">
+            <li>实现设备运行状态 <strong>实时监控</strong>与可视化</li>
+            <li>基于历史数据的 <strong>故障预测</strong>（预测性维护）</li>
+            <li>运维工单 <strong>全生命周期闭环</strong>管理</li>
+            <li>OEE、MTBF、MTTR 等 <strong>指标报表</strong>自动生成</li>
+            <li>与集团 ERP（SAP）、MES 系统 <strong>无缝集成</strong></li>
+          </ul>
+        </div>
+      </div>
+      <div class="quote-block">
+        "本项目的核心价值在于将传统的事后维修（Breakdown Maintenance）模式升级为基于数据驱动的预测性维护（Predictive Maintenance）模式，实现从被动应对到主动干预的转变。"
+      </div>
+    </section>
+
+    <!-- ══ 2. 规模参数 ══ -->
+    <section class="section" id="scale">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">项目规模参数（论文可引用）</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title"><span class="card-icon c-green">规</span>接入规模</div>
+          <table style="font-size:13px;width:100%;border-collapse:collapse">
+            <tr><td style="padding:4px 0;color:var(--ink-muted)">工厂数量</td><td style="text-align:right;font-weight:500">6 家</td></tr>
+            <tr><td style="padding:4px 0;color:var(--ink-muted)">监控设备</td><td style="text-align:right;font-weight:500">3200 台</td></tr>
+            <tr><td style="padding:4px 0;color:var(--ink-muted)">测点总数</td><td style="text-align:right;font-weight:500">约 48000 个</td></tr>
+            <tr><td style="padding:4px 0;color:var(--ink-muted)">边缘节点</td><td style="text-align:right;font-weight:500">24 台</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="card-icon c-purple">数</span>数据规模</div>
+          <table style="font-size:13px;width:100%;border-collapse:collapse">
+            <tr><td style="padding:4px 0;color:var(--ink-muted)">采样频率</td><td style="text-align:right;font-weight:500">1次/秒</td></tr>
+            <tr><td style="padding:4px 0;color:var(--ink-muted)">峰值吞吐</td><td style="text-align:right;font-weight:500">5万条/秒</td></tr>
+            <tr><td style="padding:4px 0;color:var(--ink-muted)">日增数据量</td><td style="text-align:right;font-weight:500">约 420 GB</td></tr>
+            <tr><td style="padding:4px 0;color:var(--ink-muted)">历史数据</td><td style="text-align:right;font-weight:500">保留 3 年</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="card-icon c-amber">团</span>团队规模</div>
+          <table style="font-size:13px;width:100%;border-collapse:collapse">
+            <tr><td style="padding:4px 0;color:var(--ink-muted)">项目周期</td><td style="text-align:right;font-weight:500">18 个月</td></tr>
+            <tr><td style="padding:4px 0;color:var(--ink-muted)">开发团队</td><td style="text-align:right;font-weight:500">22 人</td></tr>
+            <tr><td style="padding:4px 0;color:var(--ink-muted)">架构师角色</td><td style="text-align:right;font-weight:500">总体架构设计</td></tr>
+            <tr><td style="padding:4px 0;color:var(--ink-muted)">上线时间</td><td style="text-align:right;font-weight:500">分3期交付</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 3. 整体架构 ══ -->
+    <section class="section" id="arch">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">整体架构分层设计</h2>
+      </div>
+      <div class="arch-diagram">
+        <!-- L1 -->
+        <div class="arch-layer">
+          <div class="arch-layer-label">
+            <div class="arch-layer-dot" style="background:var(--accent)"></div>
+            <div class="arch-layer-name">展示层</div>
+            <div class="arch-layer-en">Presentation</div>
+          </div>
+          <div class="arch-components">
+            <span class="comp-tag c-red">设备监控大屏</span>
+            <span class="comp-tag c-red">运维工作台</span>
+            <span class="comp-tag c-red">移动端 APP</span>
+            <span class="comp-tag c-red">管理报表中心</span>
+            <span class="comp-tag c-red">Vue.js 3 SPA</span>
+            <span class="comp-tag c-gray">ECharts 可视化</span>
+          </div>
+        </div>
+        <!-- L2 -->
+        <div class="arch-layer">
+          <div class="arch-layer-label">
+            <div class="arch-layer-dot" style="background:var(--accent-2)"></div>
+            <div class="arch-layer-name">应用服务层</div>
+            <div class="arch-layer-en">Application</div>
+          </div>
+          <div class="arch-components">
+            <span class="comp-tag c-blue">设备监控服务</span>
+            <span class="comp-tag c-blue">告警管理服务</span>
+            <span class="comp-tag c-blue">工单管理服务</span>
+            <span class="comp-tag c-blue">备件管理服务</span>
+            <span class="comp-tag c-blue">报表分析服务</span>
+            <span class="comp-tag c-blue">用户权限服务</span>
+            <span class="comp-tag c-gray">Spring Boot 微服务</span>
+            <span class="comp-tag c-gray">API Gateway</span>
+            <span class="comp-tag c-gray">Spring Cloud</span>
+          </div>
+        </div>
+        <!-- L3 -->
+        <div class="arch-layer">
+          <div class="arch-layer-label">
+            <div class="arch-layer-dot" style="background:var(--accent-3)"></div>
+            <div class="arch-layer-name">计算与 AI 层</div>
+            <div class="arch-layer-en">Computing / AI</div>
+          </div>
+          <div class="arch-components">
+            <span class="comp-tag c-green">Flink 实时流计算</span>
+            <span class="comp-tag c-green">Spark 离线批处理</span>
+            <span class="comp-tag c-green">故障预测模型服务</span>
+            <span class="comp-tag c-green">特征工程引擎</span>
+            <span class="comp-tag c-green">规则引擎（Drools）</span>
+            <span class="comp-tag c-gray">Python FastAPI</span>
+            <span class="comp-tag c-gray">MLflow 模型管理</span>
+          </div>
+        </div>
+        <!-- L4 -->
+        <div class="arch-layer">
+          <div class="arch-layer-label">
+            <div class="arch-layer-dot" style="background:var(--accent-4)"></div>
+            <div class="arch-layer-name">数据存储层</div>
+            <div class="arch-layer-en">Storage</div>
+          </div>
+          <div class="arch-components">
+            <span class="comp-tag c-purple">InfluxDB 时序数据库</span>
+            <span class="comp-tag c-purple">MySQL 业务数据库</span>
+            <span class="comp-tag c-purple">Redis 缓存集群</span>
+            <span class="comp-tag c-purple">HDFS 数据湖</span>
+            <span class="comp-tag c-purple">Elasticsearch 日志库</span>
+            <span class="comp-tag c-gray">MinIO 对象存储</span>
+          </div>
+        </div>
+        <!-- L5 -->
+        <div class="arch-layer">
+          <div class="arch-layer-label">
+            <div class="arch-layer-dot" style="background:var(--accent-5)"></div>
+            <div class="arch-layer-name">消息与接入层</div>
+            <div class="arch-layer-en">Integration</div>
+          </div>
+          <div class="arch-components">
+            <span class="comp-tag c-amber">Kafka 消息队列</span>
+            <span class="comp-tag c-amber">MQTT Broker</span>
+            <span class="comp-tag c-amber">OPC-UA 协议适配</span>
+            <span class="comp-tag c-amber">Modbus 协议适配</span>
+            <span class="comp-tag c-amber">边缘计算节点</span>
+            <span class="comp-tag c-gray">工业网关</span>
+            <span class="comp-tag c-gray">REST / WebSocket</span>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box" style="margin-top:1rem">
+        <span class="tip-icon">💡</span>
+        <span>论文写作提示：描述架构时，要强调 <strong>每层的职责边界</strong>，以及为何采用这种分层。本项目从下到上体现了"数据采集→实时处理→持久化→业务逻辑→展示"的清晰数据流动，符合关注点分离原则。</span>
+      </div>
+    </section>
+
+    <!-- ══ 4. 架构模式 ══ -->
+    <section class="section" id="arch-pattern">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">架构模式选择与理由</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><span class="card-icon c-blue">微</span>微服务架构</div>
+          <p style="font-size:13px;color:var(--ink-muted);margin-bottom:10px">应用层采用微服务，按业务域拆分</p>
+          <table style="font-size:12px;width:100%;border-collapse:collapse">
+            <tr style="background:var(--paper-warm)"><td style="padding:5px 8px;font-weight:700">服务名</td><td style="padding:5px 8px;font-weight:700">职责</td><td style="padding:5px 8px;font-weight:700">数据库</td></tr>
+            <tr><td style="padding:5px 8px" class="tech-name">device-svc</td><td style="padding:5px 8px;font-size:12px">设备台账管理</td><td style="padding:5px 8px;font-size:12px">MySQL</td></tr>
+            <tr><td style="padding:5px 8px" class="tech-name">monitor-svc</td><td style="padding:5px 8px;font-size:12px">实时状态监控</td><td style="padding:5px 8px;font-size:12px">InfluxDB</td></tr>
+            <tr><td style="padding:5px 8px" class="tech-name">alarm-svc</td><td style="padding:5px 8px;font-size:12px">告警规则与推送</td><td style="padding:5px 8px;font-size:12px">MySQL+Redis</td></tr>
+            <tr><td style="padding:5px 8px" class="tech-name">workorder-svc</td><td style="padding:5px 8px;font-size:12px">工单全生命周期</td><td style="padding:5px 8px;font-size:12px">MySQL</td></tr>
+            <tr><td style="padding:5px 8px" class="tech-name">predict-svc</td><td style="padding:5px 8px;font-size:12px">AI 故障预测</td><td style="padding:5px 8px;font-size:12px">HDFS+MySQL</td></tr>
+            <tr><td style="padding:5px 8px" class="tech-name">report-svc</td><td style="padding:5px 8px;font-size:12px">报表与分析</td><td style="padding:5px 8px;font-size:12px">HDFS+MySQL</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="card-icon c-green">选</span>Lambda 数据架构</div>
+          <p style="font-size:13px;color:var(--ink-muted);margin-bottom:10px">数据层采用 Lambda 架构，兼顾实时与批处理</p>
+          <div style="font-size:13px;line-height:2">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+              <span class="tag c-red">批处理层</span>
+              <span style="color:var(--ink-soft)">Spark + HDFS，每日离线计算 OEE/MTBF 等指标</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+              <span class="tag c-blue">速度层</span>
+              <span style="color:var(--ink-soft)">Flink，毫秒级实时告警，秒级状态更新</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="tag c-green">服务层</span>
+              <span style="color:var(--ink-soft)">合并批处理与实时结果，对外提供统一查询</span>
+            </div>
+          </div>
+          <div style="margin-top:12px;padding:10px;background:var(--paper-warm);border-radius:6px;font-size:12px;color:var(--ink-muted)">
+            <strong>选型理由：</strong>实时监控要求低延迟（&lt;500ms），而 OEE 等统计指标允许 T+1 延迟。Lambda 架构在保障实时性的同时，通过批处理确保历史数据的准确性。
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:1rem" class="card">
+        <div class="card-title"><span class="card-icon c-amber">边</span>边云协同架构</div>
+        <div class="grid-2" style="margin-top:0.75rem">
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--ink-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">边缘节点（工厂本地）</div>
+            <ul style="font-size:13px;color:var(--ink-soft);line-height:2;padding-left:1rem">
+              <li>多协议设备接入与适配</li>
+              <li>数据预处理（清洗、降噪、压缩）</li>
+              <li>本地阈值告警（不依赖云端）</li>
+              <li>断网缓存，保障数据不丢失</li>
+              <li>边缘推理（轻量级故障判断）</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--ink-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">云端（私有云平台）</div>
+            <ul style="font-size:13px;color:var(--ink-soft);line-height:2;padding-left:1rem">
+              <li>全量数据存储与历史回溯</li>
+              <li>复杂 AI 模型训练与推理</li>
+              <li>跨工厂数据汇聚分析</li>
+              <li>统一管理门户与报表中心</li>
+              <li>与 ERP/MES 系统集成</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 5. 数据架构 ══ -->
+    <section class="section" id="data-arch">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <h2 class="section-title">数据架构设计</h2>
+      </div>
+      <div class="arch-diagram">
+        <div class="arch-layer">
+          <div class="arch-layer-label">
+            <div class="arch-layer-dot" style="background:#888"></div>
+            <div class="arch-layer-name">ADS 层</div>
+            <div class="arch-layer-en">应用数据层</div>
+          </div>
+          <div class="arch-components">
+            <span class="comp-tag c-red">OEE 指标报表</span>
+            <span class="comp-tag c-red">MTBF / MTTR 统计</span>
+            <span class="comp-tag c-red">设备健康评分</span>
+            <span class="comp-tag c-red">故障分布分析</span>
+            <span class="comp-tag c-gray">→ 对外 API 输出</span>
+          </div>
+        </div>
+        <div class="arch-layer">
+          <div class="arch-layer-label">
+            <div class="arch-layer-dot" style="background:var(--accent-4)"></div>
+            <div class="arch-layer-name">DWS 层</div>
+            <div class="arch-layer-en">数据汇总层</div>
+          </div>
+          <div class="arch-components">
+            <span class="comp-tag c-purple">设备日运行汇总</span>
+            <span class="comp-tag c-purple">告警次数统计</span>
+            <span class="comp-tag c-purple">维修工单聚合</span>
+            <span class="comp-tag c-purple">产线效率分析</span>
+            <span class="comp-tag c-gray">→ Spark SQL 计算</span>
+          </div>
+        </div>
+        <div class="arch-layer">
+          <div class="arch-layer-label">
+            <div class="arch-layer-dot" style="background:var(--accent-2)"></div>
+            <div class="arch-layer-name">DWD 层</div>
+            <div class="arch-layer-en">数据明细层</div>
+          </div>
+          <div class="arch-components">
+            <span class="comp-tag c-blue">设备运行明细（时序）</span>
+            <span class="comp-tag c-blue">告警事件明细</span>
+            <span class="comp-tag c-blue">维修记录明细</span>
+            <span class="comp-tag c-blue">故障日志明细</span>
+            <span class="comp-tag c-gray">→ 数据清洗标准化</span>
+          </div>
+        </div>
+        <div class="arch-layer">
+          <div class="arch-layer-label">
+            <div class="arch-layer-dot" style="background:var(--accent-3)"></div>
+            <div class="arch-layer-name">ODS 层</div>
+            <div class="arch-layer-en">原始数据层</div>
+          </div>
+          <div class="arch-components">
+            <span class="comp-tag c-green">设备实时上报数据</span>
+            <span class="comp-tag c-green">ERP 同步数据</span>
+            <span class="comp-tag c-green">MES 生产数据</span>
+            <span class="comp-tag c-green">系统操作日志</span>
+            <span class="comp-tag c-gray">→ HDFS 原始存储</span>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box" style="margin-top:1rem">
+        <span class="tip-icon">💡</span>
+        <span>论文写作提示："论大数据架构"或"论数据仓库设计"题目可直接引用此四层模型，重点描述 ODS→DWD 的清洗逻辑（去噪、对齐时间戳）以及 DWS→ADS 的业务指标计算方式。</span>
+      </div>
+    </section>
+
+    <!-- ══ 6. 部署架构 ══ -->
+    <section class="section" id="deployment">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <h2 class="section-title">部署架构</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><span class="card-icon c-green">K8s</span>云端部署（私有云）</div>
+          <ul style="font-size:13px;color:var(--ink-soft);line-height:2;padding-left:1rem">
+            <li>Kubernetes 容器编排，自动扩缩容</li>
+            <li>微服务均以 Pod 形式部署，互相隔离</li>
+            <li>Kafka 3节点集群，ZooKeeper 管理</li>
+            <li>InfluxDB 集群，数据分片 + 副本</li>
+            <li>MySQL 主从复制，读写分离</li>
+            <li>Redis Sentinel 高可用模式</li>
+            <li>Nginx 反向代理 + 负载均衡</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="card-icon c-amber">边</span>边缘节点（工厂侧）</div>
+          <ul style="font-size:13px;color:var(--ink-soft);line-height:2;padding-left:1rem">
+            <li>每厂部署 4 台工业级边缘服务器</li>
+            <li>运行轻量级容器（Docker + K3s）</li>
+            <li>本地 MQTT Broker（EMQ X）</li>
+            <li>本地时序缓存（SQLite/InfluxDB精简版）</li>
+            <li>与云端通过专线 / VPN 加密连接</li>
+            <li>断网自治：本地告警与缓存上报</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" style="margin-top:1rem">
+        <div class="card-title"><span class="card-icon c-purple">可</span>高可用保障措施</div>
+        <div class="grid-3" style="margin-top:0.75rem">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--accent);margin-bottom:6px;text-transform:uppercase">应用层</div>
+            <p style="font-size:12px;color:var(--ink-soft);line-height:1.7">微服务多副本部署，K8s 自动重启故障 Pod，服务网格实现熔断降级</p>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--accent-2);margin-bottom:6px;text-transform:uppercase">数据层</div>
+            <p style="font-size:12px;color:var(--ink-soft);line-height:1.7">Kafka 三副本机制，MySQL 主从切换 &lt;30s，InfluxDB 数据持久化保障</p>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--accent-3);margin-bottom:6px;text-transform:uppercase">边缘层</div>
+            <p style="font-size:12px;color:var(--ink-soft);line-height:1.7">本地缓存队列最多保存 72 小时数据，断线重连后自动批量上报补偿</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 7. 技术栈全景 ══ -->
+    <section class="section" id="tech-stack">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <h2 class="section-title">技术栈全景</h2>
+      </div>
+      <div style="background:var(--paper-card);border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th style="width:90px">领域</th>
+              <th style="width:130px">技术</th>
+              <th>用途说明</th>
+              <th style="width:90px">选型理由</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="tech-category c-amber" style="font-size:11px;padding:2px 6px;border-radius:3px;background:var(--accent-5-soft);color:var(--accent-5);border:1px solid #dfc98a">接入协议</span></td>
+              <td class="tech-name">MQTT / OPC-UA</td>
+              <td style="font-size:13px;color:var(--ink-soft)">设备数据采集主要协议。MQTT 用于新型智能设备，OPC-UA 用于工业控制系统（PLC/SCADA）</td>
+              <td style="font-size:12px;color:var(--ink-muted)">工业标准</td>
+            </tr>
+            <tr>
+              <td><span class="tech-category" style="font-size:11px;padding:2px 6px;border-radius:3px;background:var(--accent-5-soft);color:var(--accent-5);border:1px solid #dfc98a">接入协议</span></td>
+              <td class="tech-name">Modbus / PROFINET</td>
+              <td style="font-size:13px;color:var(--ink-soft)">老旧设备接入，通过协议网关转换为统一的内部数据格式</td>
+              <td style="font-size:12px;color:var(--ink-muted)">兼容存量</td>
+            </tr>
+            <tr>
+              <td><span class="tech-category" style="font-size:11px;padding:2px 6px;border-radius:3px;background:var(--accent-soft);color:var(--accent);border:1px solid #e8c5bc">消息中间件</span></td>
+              <td class="tech-name">Apache Kafka</td>
+              <td style="font-size:13px;color:var(--ink-soft)">设备数据主干消息总线，支持高吞吐（峰值5万/秒），持久化保障数据不丢失，解耦采集与计算</td>
+              <td style="font-size:12px;color:var(--ink-muted)">高吞吐持久化</td>
+            </tr>
+            <tr>
+              <td><span class="tech-category" style="font-size:11px;padding:2px 6px;border-radius:3px;background:var(--accent-2-soft);color:var(--accent-2);border:1px solid #b8d0ea">实时计算</span></td>
+              <td class="tech-name">Apache Flink</td>
+              <td style="font-size:13px;color:var(--ink-soft)">消费 Kafka 数据，毫秒级实时告警判断、状态聚合、窗口计算（滑动窗口统计设备健康分）</td>
+              <td style="font-size:12px;color:var(--ink-muted)">低延迟有状态</td>
+            </tr>
+            <tr>
+              <td><span class="tech-category" style="font-size:11px;padding:2px 6px;border-radius:3px;background:var(--accent-2-soft);color:var(--accent-2);border:1px solid #b8d0ea">批处理</span></td>
+              <td class="tech-name">Apache Spark</td>
+              <td style="font-size:13px;color:var(--ink-soft)">每日离线计算 OEE、MTBF、MTTR 等统计指标，AI 模型训练数据准备</td>
+              <td style="font-size:12px;color:var(--ink-muted)">大规模批计算</td>
+            </tr>
+            <tr>
+              <td><span class="tech-category" style="font-size:11px;padding:2px 6px;border-radius:3px;background:var(--accent-3-soft);color:var(--accent-3);border:1px solid #b3ddd2">时序存储</span></td>
+              <td class="tech-name">InfluxDB</td>
+              <td style="font-size:13px;color:var(--ink-soft)">存储所有设备传感器时序数据，高压缩率，原生支持时序查询语法，自动数据降采样策略</td>
+              <td style="font-size:12px;color:var(--ink-muted)">时序场景最优</td>
+            </tr>
+            <tr>
+              <td><span class="tech-category" style="font-size:11px;padding:2px 6px;border-radius:3px;background:var(--accent-3-soft);color:var(--accent-3);border:1px solid #b3ddd2">关系数据库</span></td>
+              <td class="tech-name">MySQL 8.0</td>
+              <td style="font-size:13px;color:var(--ink-soft)">存储设备台账、工单、备件、用户权限等业务数据，主从部署 + 读写分离</td>
+              <td style="font-size:12px;color:var(--ink-muted)">业务数据成熟</td>
+            </tr>
+            <tr>
+              <td><span class="tech-category" style="font-size:11px;padding:2px 6px;border-radius:3px;background:var(--accent-3-soft);color:var(--accent-3);border:1px solid #b3ddd2">缓存</span></td>
+              <td class="tech-name">Redis Cluster</td>
+              <td style="font-size:13px;color:var(--ink-soft)">设备最新状态缓存（监控大屏实时刷新），告警规则缓存，会话管理</td>
+              <td style="font-size:12px;color:var(--ink-muted)">高频读取场景</td>
+            </tr>
+            <tr>
+              <td><span class="tech-category" style="font-size:11px;padding:2px 6px;border-radius:3px;background:var(--accent-3-soft);color:var(--accent-3);border:1px solid #b3ddd2">数据湖</span></td>
+              <td class="tech-name">HDFS + Hive</td>
+              <td style="font-size:13px;color:var(--ink-soft)">历史数据长期存储，AI 训练数据集管理，数仓分层底座</td>
+              <td style="font-size:12px;color:var(--ink-muted)">大规模离线存储</td>
+            </tr>
+            <tr>
+              <td><span class="tech-category" style="font-size:11px;padding:2px 6px;border-radius:3px;background:var(--accent-4-soft);color:var(--accent-4);border:1px solid #d0bde8">AI 框架</span></td>
+              <td class="tech-name">Python + PyTorch</td>
+              <td style="font-size:13px;color:var(--ink-soft)">故障预测模型开发（LSTM 时序预测 + 随机森林分类），特征工程流水线</td>
+              <td style="font-size:12px;color:var(--ink-muted)">生态丰富</td>
+            </tr>
+            <tr>
+              <td><span class="tech-category" style="font-size:11px;padding:2px 6px;border-radius:3px;background:var(--accent-4-soft);color:var(--accent-4);border:1px solid #d0bde8">模型管理</span></td>
+              <td class="tech-name">MLflow</td>
+              <td style="font-size:13px;color:var(--ink-soft)">模型版本管理、实验跟踪、模型注册表，支持模型灰度发布与 A/B 测试</td>
+              <td style="font-size:12px;color:var(--ink-muted)">MLOps 规范化</td>
+            </tr>
+            <tr>
+              <td><span class="tech-category" style="font-size:11px;padding:2px 6px;border-radius:3px;background:var(--accent-soft);color:var(--accent);border:1px solid #e8c5bc">应用框架</span></td>
+              <td class="tech-name">Spring Boot + Cloud</td>
+              <td style="font-size:13px;color:var(--ink-soft)">微服务开发框架，集成服务注册（Nacos）、配置中心、服务治理（Sentinel 熔断）</td>
+              <td style="font-size:12px;color:var(--ink-muted)">Java 生态成熟</td>
+            </tr>
+            <tr>
+              <td><span class="tech-category" style="font-size:11px;padding:2px 6px;border-radius:3px;background:var(--accent-soft);color:var(--accent);border:1px solid #e8c5bc">API 网关</span></td>
+              <td class="tech-name">Spring Cloud Gateway</td>
+              <td style="font-size:13px;color:var(--ink-soft)">统一鉴权（JWT）、限流、路由、跨域处理，前端统一入口</td>
+              <td style="font-size:12px;color:var(--ink-muted)">统一流量入口</td>
+            </tr>
+            <tr>
+              <td><span class="tech-category" style="font-size:11px;padding:2px 6px;border-radius:3px;background:var(--accent-soft);color:var(--accent);border:1px solid #e8c5bc">前端</span></td>
+              <td class="tech-name">Vue 3 + ECharts</td>
+              <td style="font-size:13px;color:var(--ink-soft)">监控大屏（WebSocket 实时推送）、运维工作台，ECharts 可视化图表</td>
+              <td style="font-size:12px;color:var(--ink-muted)">国内生态好</td>
+            </tr>
+            <tr>
+              <td><span class="tech-category" style="font-size:11px;padding:2px 6px;border-radius:3px;background:#f1f1ed;color:#555;border:1px solid #ddd">基础设施</span></td>
+              <td class="tech-name">Kubernetes + Docker</td>
+              <td style="font-size:13px;color:var(--ink-soft)">全部服务容器化部署，K8s 自动扩缩容，滚动发布，自愈能力</td>
+              <td style="font-size:12px;color:var(--ink-muted)">云原生标准</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ══ 8. 技术对比 ══ -->
+    <section class="section" id="tech-compare">
+      <div class="section-header">
+        <span class="section-num">08</span>
+        <h2 class="section-title">关键技术选型对比（论文写作核心）</h2>
+      </div>
+      <div style="margin-bottom:1rem" class="card">
+        <div class="card-title"><span class="card-icon c-green">对</span>时序数据库选型：InfluxDB vs TDengine vs TimescaleDB</div>
+        <div style="overflow-x:auto">
+          <table style="width:100%;font-size:12px;border-collapse:collapse;min-width:500px">
+            <tr style="background:var(--paper-warm)">
+              <th style="padding:7px 10px;text-align:left;font-weight:700">维度</th>
+              <th style="padding:7px 10px;text-align:center;font-weight:700;color:var(--accent-3)">✓ InfluxDB</th>
+              <th style="padding:7px 10px;text-align:center;font-weight:700;color:var(--ink-muted)">TDengine</th>
+              <th style="padding:7px 10px;text-align:center;font-weight:700;color:var(--ink-muted)">TimescaleDB</th>
+            </tr>
+            <tr><td style="padding:6px 10px;color:var(--ink-muted)">时序查询性能</td><td style="padding:6px 10px;text-align:center;color:var(--accent-3);font-weight:500">★★★★★</td><td style="padding:6px 10px;text-align:center">★★★★★</td><td style="padding:6px 10px;text-align:center">★★★★</td></tr>
+            <tr style="background:var(--paper-warm)"><td style="padding:6px 10px;color:var(--ink-muted)">集群扩展性</td><td style="padding:6px 10px;text-align:center;color:var(--accent-3);font-weight:500">★★★★</td><td style="padding:6px 10px;text-align:center">★★★★</td><td style="padding:6px 10px;text-align:center">★★★</td></tr>
+            <tr><td style="padding:6px 10px;color:var(--ink-muted)">生态与工具链</td><td style="padding:6px 10px;text-align:center;color:var(--accent-3);font-weight:500">★★★★★</td><td style="padding:6px 10px;text-align:center">★★★</td><td style="padding:6px 10px;text-align:center">★★★★</td></tr>
+            <tr style="background:var(--paper-warm)"><td style="padding:6px 10px;color:var(--ink-muted)">SQL 兼容性</td><td style="padding:6px 10px;text-align:center;color:var(--accent-3);font-weight:500">部分支持</td><td style="padding:6px 10px;text-align:center">支持</td><td style="padding:6px 10px;text-align:center">完整 SQL</td></tr>
+            <tr><td style="padding:6px 10px;color:var(--ink-muted)">国内社区</td><td style="padding:6px 10px;text-align:center;color:var(--accent-3);font-weight:500">★★★★</td><td style="padding:6px 10px;text-align:center;color:var(--accent-3);font-weight:500">★★★★★</td><td style="padding:6px 10px;text-align:center">★★★</td></tr>
+            <tr style="background:var(--accent-3-soft)"><td style="padding:6px 10px;font-weight:700">选择原因</td><td colspan="3" style="padding:6px 10px;font-size:12px;color:var(--ink-soft)">InfluxDB 生态最成熟，Grafana 集成原生支持，团队已有使用经验，Flux 查询语言能力强，且开源版本满足需求</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="card-icon c-blue">对</span>消息队列选型：Kafka vs RabbitMQ vs RocketMQ</div>
+        <div style="overflow-x:auto">
+          <table style="width:100%;font-size:12px;border-collapse:collapse;min-width:500px">
+            <tr style="background:var(--paper-warm)">
+              <th style="padding:7px 10px;text-align:left;font-weight:700">维度</th>
+              <th style="padding:7px 10px;text-align:center;font-weight:700;color:var(--accent-3)">✓ Kafka</th>
+              <th style="padding:7px 10px;text-align:center;font-weight:700;color:var(--ink-muted)">RabbitMQ</th>
+              <th style="padding:7px 10px;text-align:center;font-weight:700;color:var(--ink-muted)">RocketMQ</th>
+            </tr>
+            <tr><td style="padding:6px 10px;color:var(--ink-muted)">吞吐量</td><td style="padding:6px 10px;text-align:center;color:var(--accent-3);font-weight:500">百万/秒</td><td style="padding:6px 10px;text-align:center">万/秒</td><td style="padding:6px 10px;text-align:center">十万/秒</td></tr>
+            <tr style="background:var(--paper-warm)"><td style="padding:6px 10px;color:var(--ink-muted)">数据持久化</td><td style="padding:6px 10px;text-align:center;color:var(--accent-3);font-weight:500">磁盘持久化</td><td style="padding:6px 10px;text-align:center">可选</td><td style="padding:6px 10px;text-align:center">磁盘持久化</td></tr>
+            <tr><td style="padding:6px 10px;color:var(--ink-muted)">与 Flink 集成</td><td style="padding:6px 10px;text-align:center;color:var(--accent-3);font-weight:500">原生连接器</td><td style="padding:6px 10px;text-align:center">支持</td><td style="padding:6px 10px;text-align:center">支持</td></tr>
+            <tr style="background:var(--paper-warm)"><td style="padding:6px 10px;color:var(--ink-muted)">消息回溯</td><td style="padding:6px 10px;text-align:center;color:var(--accent-3);font-weight:500">支持（按时间）</td><td style="padding:6px 10px;text-align:center">不支持</td><td style="padding:6px 10px;text-align:center">支持</td></tr>
+            <tr style="background:var(--accent-3-soft)"><td style="padding:6px 10px;font-weight:700">选择原因</td><td colspan="3" style="padding:6px 10px;font-size:12px;color:var(--ink-soft)">设备数据峰值 5 万条/秒，需要超高吞吐；同时 Kafka 日志持久化特性支持数据回放，与 Flink 原生集成，符合 Lambda 架构需求</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 9. 业务流程 ══ -->
+    <section class="section" id="flow-data">
+      <div class="section-header">
+        <span class="section-num">09</span>
+        <h2 class="section-title">数据采集与处理流程</h2>
+      </div>
+      <div class="flow-diagram">
+        <div class="flow-section-label">数据采集链路（从设备到存储）</div>
+        <div class="flow-row">
+          <span class="flow-node c-amber">生产设备<br><span style="font-size:10px;font-family:var(--mono)">传感器/PLC</span></span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-node c-amber">工业网关<br><span style="font-size:10px;font-family:var(--mono)">协议转换</span></span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-node c-amber">边缘节点<br><span style="font-size:10px;font-family:var(--mono)">预处理/缓存</span></span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-node c-red">Kafka<br><span style="font-size:10px;font-family:var(--mono)">消息队列</span></span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-node c-blue">Flink<br><span style="font-size:10px;font-family:var(--mono)">实时计算</span></span>
+        </div>
+        <div class="flow-row" style="margin-top:8px">
+          <span style="width:90px;flex-shrink:0"></span>
+          <span class="flow-arrow" style="opacity:0">→</span>
+          <span style="width:90px;flex-shrink:0"></span>
+          <span class="flow-arrow" style="opacity:0">→</span>
+          <span style="width:90px;flex-shrink:0"></span>
+          <span class="flow-arrow" style="opacity:0">→</span>
+          <span style="width:90px;flex-shrink:0"></span>
+          <span class="flow-arrow">↙</span>
+          <span style="font-size:12px;color:var(--ink-muted)">同时写入</span>
+        </div>
+        <div class="flow-row" style="margin-top:4px;padding-left:320px;flex-wrap:nowrap">
+          <span class="flow-node c-purple" style="min-width:80px">InfluxDB<br><span style="font-size:10px">时序数据</span></span>
+          <span class="flow-arrow">  </span>
+          <span class="flow-node c-green" style="min-width:80px">HDFS<br><span style="font-size:10px">数据湖</span></span>
+          <span class="flow-arrow">  </span>
+          <span class="flow-node c-gray" style="min-width:80px">Redis<br><span style="font-size:10px">状态缓存</span></span>
+        </div>
+
+        <div class="flow-section-label">边缘节点处理逻辑</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+          <div style="background:var(--accent-5-soft);border:1px solid #dfc98a;border-radius:6px;padding:10px;font-size:12px">
+            <strong style="color:var(--accent-5)">① 数据接入</strong><br>
+            <span style="color:var(--ink-soft)">多协议接入（MQTT/OPC-UA/Modbus），统一转换为 JSON 格式内部报文</span>
+          </div>
+          <div style="background:var(--accent-5-soft);border:1px solid #dfc98a;border-radius:6px;padding:10px;font-size:12px">
+            <strong style="color:var(--accent-5)">② 本地预处理</strong><br>
+            <span style="color:var(--ink-soft)">异常值过滤、时间戳对齐、数据压缩（减少 60% 上传带宽）</span>
+          </div>
+          <div style="background:var(--accent-5-soft);border:1px solid #dfc98a;border-radius:6px;padding:10px;font-size:12px">
+            <strong style="color:var(--accent-5)">③ 本地告警</strong><br>
+            <span style="color:var(--ink-soft)">阈值规则本地执行，网络故障时仍可推送告警给现场人员</span>
+          </div>
+        </div>
+
+        <div class="flow-section-label">Flink 实时处理逻辑</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px">
+          <div style="background:var(--accent-2-soft);border:1px solid #b8d0ea;border-radius:6px;padding:10px;font-size:12px">
+            <strong style="color:var(--accent-2)">数据解析</strong><br>
+            <span style="color:var(--ink-soft)">Kafka Source，JSON 解析，设备元数据关联</span>
+          </div>
+          <div style="background:var(--accent-2-soft);border:1px solid #b8d0ea;border-radius:6px;padding:10px;font-size:12px">
+            <strong style="color:var(--accent-2)">规则计算</strong><br>
+            <span style="color:var(--ink-soft)">滑动窗口（5min）计算均值/方差，触发告警规则</span>
+          </div>
+          <div style="background:var(--accent-2-soft);border:1px solid #b8d0ea;border-radius:6px;padding:10px;font-size:12px">
+            <strong style="color:var(--accent-2)">特征提取</strong><br>
+            <span style="color:var(--ink-soft)">实时提取振动/温度特征，推送 AI 模型服务</span>
+          </div>
+          <div style="background:var(--accent-2-soft);border:1px solid #b8d0ea;border-radius:6px;padding:10px;font-size:12px">
+            <strong style="color:var(--accent-2)">多路输出</strong><br>
+            <span style="color:var(--ink-soft)">写 InfluxDB + 推告警 + 更新 Redis 状态</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 10. 告警流程 ══ -->
+    <section class="section" id="flow-alert">
+      <div class="section-header">
+        <span class="section-num">10</span>
+        <h2 class="section-title">告警处理流程</h2>
+      </div>
+      <div class="flow-diagram">
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;text-align:center">
+          <div style="background:var(--accent-soft);border:1px solid #e8c5bc;border-radius:8px;padding:12px;font-size:12px">
+            <div style="font-weight:700;color:var(--accent);margin-bottom:4px">① 触发</div>
+            <div style="color:var(--ink-soft)">Flink 计算超阈值<br>或 AI 预测高风险</div>
+          </div>
+          <div style="background:var(--accent-soft);border:1px solid #e8c5bc;border-radius:8px;padding:12px;font-size:12px">
+            <div style="font-weight:700;color:var(--accent);margin-bottom:4px">② 降噪</div>
+            <div style="color:var(--ink-soft)">防抖处理（连续3次超阈值才告警），去重合并</div>
+          </div>
+          <div style="background:var(--accent-soft);border:1px solid #e8c5bc;border-radius:8px;padding:12px;font-size:12px">
+            <div style="font-weight:700;color:var(--accent);margin-bottom:4px">③ 分级</div>
+            <div style="color:var(--ink-soft)">P1 紧急 / P2 重要<br>/ P3 普通，三级分类</div>
+          </div>
+          <div style="background:var(--accent-soft);border:1px solid #e8c5bc;border-radius:8px;padding:12px;font-size:12px">
+            <div style="font-weight:700;color:var(--accent);margin-bottom:4px">④ 推送</div>
+            <div style="color:var(--ink-soft)">微信/短信/APP 推送，按角色定向通知</div>
+          </div>
+          <div style="background:var(--accent-soft);border:1px solid #e8c5bc;border-radius:8px;padding:12px;font-size:12px">
+            <div style="font-weight:700;color:var(--accent);margin-bottom:4px">⑤ 自动工单</div>
+            <div style="color:var(--ink-soft)">P1/P2 自动创建工单，分配给对应维修人员</div>
+          </div>
+        </div>
+        <div class="tip-box" style="margin-top:1rem">
+          <span class="tip-icon">📌</span>
+          <span>告警降噪是减少"告警疲劳"的关键设计。项目初期曾因阈值过于敏感导致每日告警超 2000 条，维修人员疲于应对。引入连续触发判断+告警合并机制后，有效告警率从 31% 提升至 89%。</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 11. 工单流程 ══ -->
+    <section class="section" id="flow-workorder">
+      <div class="section-header">
+        <span class="section-num">11</span>
+        <h2 class="section-title">工单管理流程</h2>
+      </div>
+      <div class="flow-diagram">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+          <div>
+            <div class="flow-section-label">创建阶段</div>
+            <div style="font-size:12px;color:var(--ink-soft);line-height:2">
+              → 自动创建（告警触发）<br>
+              → 手动创建（人工发现）<br>
+              → 预防性工单（计划维护）<br>
+              → 关联设备台账 + 历史故障
+            </div>
+          </div>
+          <div>
+            <div class="flow-section-label">执行阶段</div>
+            <div style="font-size:12px;color:var(--ink-soft);line-height:2">
+              → 智能派单（技能+地理位置）<br>
+              → 维修人员 APP 接单<br>
+              → 现场扫码确认设备<br>
+              → 上传维修照片/视频
+            </div>
+          </div>
+          <div>
+            <div class="flow-section-label">闭环阶段</div>
+            <div style="font-size:12px;color:var(--ink-soft);line-height:2">
+              → 维修完成确认<br>
+              → 设备恢复运行验证<br>
+              → 备件消耗记录<br>
+              → 费用归集 → 同步 SAP ERP
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:1rem;background:var(--paper-warm);border-radius:6px;padding:10px;font-size:12px;color:var(--ink-muted)">
+          <strong>工单状态机：</strong>
+          <span class="tag c-gray">待接单</span> →
+          <span class="tag c-blue">已接单</span> →
+          <span class="tag c-amber">处理中</span> →
+          <span class="tag c-purple">待验收</span> →
+          <span class="tag c-green">已完成</span>
+          | 也可 →
+          <span class="tag c-red">已挂起</span>（等备件）→ 重回处理中
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 12. AI 流程 ══ -->
+    <section class="section" id="flow-ai">
+      <div class="section-header">
+        <span class="section-num">12</span>
+        <h2 class="section-title">AI 故障预测流程（全链路）</h2>
+      </div>
+      <div class="flow-diagram">
+        <div class="flow-section-label">模型训练链路（离线）</div>
+        <div class="flow-row">
+          <span class="flow-node c-green">历史数据<br><span style="font-size:10px">HDFS 3年</span></span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-node c-green">特征工程<br><span style="font-size:10px">Spark计算</span></span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-node c-green">模型训练<br><span style="font-size:10px">PyTorch</span></span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-node c-green">模型评估<br><span style="font-size:10px">精确率/召回率</span></span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-node c-green">MLflow注册<br><span style="font-size:10px">版本管理</span></span>
+        </div>
+
+        <div class="flow-section-label" style="margin-top:1rem">在线推理链路（实时）</div>
+        <div class="flow-row">
+          <span class="flow-node c-blue">实时特征<br><span style="font-size:10px">Flink提取</span></span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-node c-blue">模型服务<br><span style="font-size:10px">FastAPI</span></span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-node c-blue">风险评分<br><span style="font-size:10px">0~100分</span></span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-node c-red">预警推送<br><span style="font-size:10px">&gt;70分触发</span></span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-node c-red">预防工单<br><span style="font-size:10px">提前维护</span></span>
+        </div>
+
+        <div class="flow-section-label" style="margin-top:1rem">特征工程关键特征</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+          <div style="background:var(--accent-3-soft);border:1px solid #b3ddd2;border-radius:6px;padding:8px;font-size:11px;text-align:center">
+            <div style="font-weight:700;color:var(--accent-3)">振动特征</div>
+            <div style="color:var(--ink-muted);margin-top:4px">RMS、峰值、峭度系数、频谱能量</div>
+          </div>
+          <div style="background:var(--accent-3-soft);border:1px solid #b3ddd2;border-radius:6px;padding:8px;font-size:11px;text-align:center">
+            <div style="font-weight:700;color:var(--accent-3)">温度特征</div>
+            <div style="color:var(--ink-muted);margin-top:4px">温升速率、热稳定性、异常热点检测</div>
+          </div>
+          <div style="background:var(--accent-3-soft);border:1px solid #b3ddd2;border-radius:6px;padding:8px;font-size:11px;text-align:center">
+            <div style="font-weight:700;color:var(--accent-3)">电气特征</div>
+            <div style="color:var(--ink-muted);margin-top:4px">电流谐波、功率因数、绝缘电阻趋势</div>
+          </div>
+          <div style="background:var(--accent-3-soft);border:1px solid #b3ddd2;border-radius:6px;padding:8px;font-size:11px;text-align:center">
+            <div style="font-weight:700;color:var(--accent-3)">运行特征</div>
+            <div style="color:var(--ink-muted);margin-top:4px">累计运行时长、维修间隔、负载率趋势</div>
+          </div>
+        </div>
+
+        <div class="tip-box" style="margin-top:1rem">
+          <span class="tip-icon">💡</span>
+          <span>模型选择：采用<strong> LSTM 时序预测</strong>（预测未来 72 小时故障风险）+ <strong>随机森林分类</strong>（快速判断当前故障类型），两个模型协同工作。最终预测准确率达 87.3%，误报率控制在 8% 以内。</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 13. 问题与解决 ══ -->
+    <section class="section" id="problems">
+      <div class="section-header">
+        <span class="section-num">13</span>
+        <h2 class="section-title">关键挑战与解决方案（论文核心内容）</h2>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-num" style="background:var(--accent-soft);color:var(--accent)">01</div>
+          <div class="problem-title">设备协议异构问题——老旧设备接入难</div>
+        </div>
+        <div class="problem-body">
+          <div class="problem-row">
+            <div class="problem-key">背景</div>
+            <div>工厂存在大量 10 年以上老旧设备，使用 Modbus、PROFIBUS、自研私有协议等，无统一接入标准</div>
+          </div>
+          <div class="problem-row">
+            <div class="problem-key">挑战</div>
+            <div>无法为每种协议单独开发适配器，开发成本高且难以维护</div>
+          </div>
+          <div class="problem-row">
+            <div class="problem-key">解决方案</div>
+            <div>设计<strong>插件化协议适配框架</strong>：定义统一的设备数据接口（DeviceDataModel），各协议以插件形式实现适配器。新增协议只需实现接口，无需修改核心代码。内置 Modbus、OPC-UA、MQTT 三种插件，支持热插拔</div>
+          </div>
+          <div class="problem-row">
+            <div class="problem-key">效果</div>
+            <div>接入新协议从原来 3 周缩短至 3 天，3200 台设备全部完成接入</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-num" style="background:var(--accent-2-soft);color:var(--accent-2)">02</div>
+          <div class="problem-title">数据洪峰问题——换班时刻大量数据同时涌入</div>
+        </div>
+        <div class="problem-body">
+          <div class="problem-row">
+            <div class="problem-key">背景</div>
+            <div>每日 3 次换班（6:00、14:00、22:00），所有设备同时上报状态，峰值流量是平均值的 8 倍（约 40 万条/秒）</div>
+          </div>
+          <div class="problem-row">
+            <div class="problem-key">挑战</div>
+            <div>峰值导致 Kafka 消费延迟飙升，Flink 处理积压，实时告警延迟超过 30 秒</div>
+          </div>
+          <div class="problem-row">
+            <div class="problem-key">解决方案</div>
+            <div>① Kafka 按工厂分区（6个分区），避免热点；② 边缘节点引入本地错峰机制，将换班时刻的批量上报打散到 5 分钟窗口内；③ Flink 配置背压感知，自动调整消费速率；④ 关键告警走独立 Topic，保障优先处理</div>
+          </div>
+          <div class="problem-row">
+            <div class="problem-key">效果</div>
+            <div>峰值处理延迟从 30 秒降至 800 毫秒，系统在高峰期稳定运行</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-num" style="background:var(--accent-3-soft);color:var(--accent-3)">03</div>
+          <div class="problem-title">AI 模型准确率不足——早期误报率超 40%</div>
+        </div>
+        <div class="problem-body">
+          <div class="problem-row">
+            <div class="problem-key">背景</div>
+            <div>首期上线的故障预测模型基于通用工业数据训练，未针对本集团设备特征优化，误报率高达 43%</div>
+          </div>
+          <div class="problem-row">
+            <div class="problem-key">挑战</div>
+            <div>维修人员对"狼来了"式误报失去信任，开始忽略 AI 预警，导致系统价值大打折扣</div>
+          </div>
+          <div class="problem-row">
+            <div class="problem-key">解决方案</div>
+            <div>① 引入<strong>迁移学习</strong>：以通用模型为基础，用本集团 3 年历史故障数据微调；② 建立<strong>维修反馈闭环</strong>：每次维修结果（是否真实故障）自动回流训练集；③ 引入设备<strong>运行上下文</strong>（负载率、环境温度、使用年限）作为额外特征；④ 对不同设备类型分别训练专属模型</div>
+          </div>
+          <div class="problem-row">
+            <div class="problem-key">效果</div>
+            <div>6 个月迭代后，误报率从 43% 降至 8%，预测准确率达 87.3%，维修人员信任度明显回升</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-header">
+          <div class="problem-num" style="background:var(--accent-4-soft);color:var(--accent-4)">04</div>
+          <div class="problem-title">边缘节点网络不稳定——数据丢失风险</div>
+        </div>
+        <div class="problem-body">
+          <div class="problem-row">
+            <div class="problem-key">背景</div>
+            <div>工厂车间网络质量参差不齐，部分老旧工厂专线月均断网 3~5 次，每次持续 10~120 分钟</div>
+          </div>
+          <div class="problem-row">
+            <div class="problem-key">解决方案</div>
+            <div>① 边缘节点本地 SQLite 缓存队列，最大存储 72 小时数据；② 断线检测（心跳机制，30 秒超时判断）；③ 断线期间持续本地告警，确保现场安全；④ 恢复连接后，按批次有序上报历史数据（限速 1000 条/秒，避免冲击云端）</div>
+          </div>
+          <div class="problem-row">
+            <div class="problem-key">效果</div>
+            <div>数据完整性从 91% 提升至 99.7%，网络抖动对业务影响完全透明化</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 14. 架构权衡 ══ -->
+    <section class="section" id="tradeoff">
+      <div class="section-header">
+        <span class="section-num">14</span>
+        <h2 class="section-title">架构权衡决策（体现架构师深度）</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><span class="card-icon c-blue">权</span>一致性 vs 可用性</div>
+          <p style="font-size:13px;color:var(--ink-soft);line-height:1.8">设备监控场景优先保障<strong>可用性（AP）</strong>：告警实时性比绝对一致性更重要。即使某次数据有轻微延迟，也不能因为等待一致性而丢失告警。报表计算场景则要求<strong>强一致性（CP）</strong>：OEE 等 KPI 数据须准确，允许 T+1 延迟。</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="card-icon c-purple">权</span>实时性 vs 成本</div>
+          <p style="font-size:13px;color:var(--ink-soft);line-height:1.8">并非所有数据都需要秒级实时：振动、温度等关键参数采样频率 1次/秒；电量、产量等辅助参数采样频率 1次/分钟；OEE 等统计指标 T+1 计算。<strong>差异化采样</strong>在保障业务需求的前提下，节省约 70% 存储成本。</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="card-icon c-green">权</span>边缘计算 vs 云端集中</div>
+          <p style="font-size:13px;color:var(--ink-soft);line-height:1.8">最初方案是全部数据上云再处理，但网络带宽成本高且延迟大。改为边云协同后：<strong>紧急告警在边缘处理</strong>（延迟 &lt; 100ms），复杂分析在云端执行（延迟允许秒级）。边缘承担约 30% 的计算负载，带宽节省 60%。</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="card-icon c-amber">权</span>微服务粒度</div>
+          <p style="font-size:13px;color:var(--ink-soft);line-height:1.8">初期设计过度拆分（20+服务），导致运维复杂度激增。后期合并为 8 个核心服务，遵循"<strong>按业务能力拆分，而非按技术层拆分</strong>"原则。每个服务对应一个明确的业务域，有独立数据库，且团队一个组能够负责一个服务。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 15. 项目效果 ══ -->
+    <section class="section" id="metrics">
+      <div class="section-header">
+        <span class="section-num">15</span>
+        <h2 class="section-title">项目效果数据（量化指标）</h2>
+      </div>
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-num" style="color:var(--accent-3)">35%</div>
+          <div class="metric-label">设备故障率<br>下降幅度</div>
+          <div class="metric-change" style="background:var(--accent-3-soft);color:var(--accent-3)">↓ 显著改善</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num" style="color:var(--accent-2)">64%</div>
+          <div class="metric-label">平均修复时间<br>缩短幅度（4.2h→1.5h）</div>
+          <div class="metric-change" style="background:var(--accent-2-soft);color:var(--accent-2)">↓ MTTR 优化</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num" style="color:var(--accent-4)">87.3%</div>
+          <div class="metric-label">AI 故障预测<br>准确率</div>
+          <div class="metric-change" style="background:var(--accent-4-soft);color:var(--accent-4)">↑ 持续迭代</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num" style="color:var(--accent-5)">99.95%</div>
+          <div class="metric-label">平台系统<br>可用性 SLA</div>
+          <div class="metric-change" style="background:var(--accent-5-soft);color:var(--accent-5)">↑ 高可用达标</div>
+        </div>
+      </div>
+      <div class="metrics-grid" style="margin-top:1rem">
+        <div class="metric-card">
+          <div class="metric-num" style="color:var(--accent)">2000万</div>
+          <div class="metric-label">年节省停机<br>损失（元）</div>
+          <div class="metric-change" style="background:var(--accent-soft);color:var(--accent)">ROI 正向</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num" style="color:var(--accent-3)">99.7%</div>
+          <div class="metric-label">数据完整性<br>（断网场景）</div>
+          <div class="metric-change" style="background:var(--accent-3-soft);color:var(--accent-3)">↑ 边缘缓存</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num" style="color:var(--accent-2)">&lt;1s</div>
+          <div class="metric-label">实时告警<br>端到端延迟</div>
+          <div class="metric-change" style="background:var(--accent-2-soft);color:var(--accent-2)">↓ 达标</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num" style="color:var(--ink-soft)">40%</div>
+          <div class="metric-label">运维人员效率<br>提升幅度</div>
+          <div class="metric-change" style="background:var(--paper-warm);color:var(--ink-muted)">↑ 人均设备数</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 16. 写作要点 ══ -->
+    <section class="section" id="essay-tips">
+      <div class="section-header">
+        <span class="section-num">16</span>
+        <h2 class="section-title">论文写作要点提示</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><span class="card-icon c-red">摘</span>摘要写法模板</div>
+          <div style="font-size:13px;color:var(--ink-soft);line-height:1.9;background:var(--paper-warm);padding:12px;border-radius:6px;font-family:var(--serif)">
+            本文以笔者参与设计的某汽车零部件集团智能设备运维平台项目为例，论述……。该项目基于工业互联网架构，接入全集团 6 家工厂约 3200 台生产设备，采用边云协同、Lambda 数据架构和微服务设计……。在项目实施过程中，笔者主要负责整体架构设计，重点解决了设备协议异构接入、海量时序数据实时处理、AI 故障预测模型准确率优化等关键问题……。项目上线后，设备故障率降低 35%，平均修复时间缩短 64%，系统可用性达 99.95%。
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="card-icon c-blue">角</span>架构师视角关键词</div>
+          <ul style="font-size:13px;color:var(--ink-soft);line-height:2.2;padding-left:1rem">
+            <li>"在架构设计阶段，我主导制定了…"</li>
+            <li>"经过对比分析，最终选择 X 而非 Y，原因在于…"</li>
+            <li>"针对此架构决策，我们权衡了…与…的关系"</li>
+            <li>"项目实施中遇到了…问题，我提出并推动了…解决方案"</li>
+            <li>"从架构评估角度，该方案在可用性/可扩展性/性能方面…"</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="card-icon c-green">题</span>题目关键词对应</div>
+          <table style="font-size:12px;width:100%;border-collapse:collapse">
+            <tr style="background:var(--paper-warm)"><td style="padding:5px 8px;font-weight:700">题目包含</td><td style="padding:5px 8px;font-weight:700">重点写</td></tr>
+            <tr><td style="padding:5px 8px;color:var(--ink-muted)">软件架构设计</td><td style="padding:5px 8px">分层架构 + 微服务选型理由 + 架构评估</td></tr>
+            <tr><td style="padding:5px 8px;color:var(--ink-muted)">可靠性/高可用</td><td style="padding:5px 8px">Kafka副本 + K8s自愈 + 边缘缓存</td></tr>
+            <tr><td style="padding:5px 8px;color:var(--ink-muted)">大数据架构</td><td style="padding:5px 8px">Lambda架构 + 数仓四层 + Flink/Spark</td></tr>
+            <tr><td style="padding:5px 8px;color:var(--ink-muted)">人工智能应用</td><td style="padding:5px 8px">LSTM预测 + 特征工程 + 模型闭环迭代</td></tr>
+            <tr><td style="padding:5px 8px;color:var(--ink-muted)">信息安全架构</td><td style="padding:5px 8px">OT/IT隔离 + JWT鉴权 + 数据分级</td></tr>
+            <tr><td style="padding:5px 8px;color:var(--ink-muted)">企业集成/中间件</td><td style="padding:5px 8px">Kafka选型 + ERP/MES集成 + 边云协同</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="card-icon c-amber">⚠</span>常见扣分点</div>
+          <ul style="font-size:13px;color:var(--ink-soft);line-height:2;padding-left:1rem">
+            <li>摘要超过 300 字，或与正文内容高度重复</li>
+            <li>写成"开发者视角"而非"架构师视角"</li>
+            <li>技术选型无对比分析，直接给出结论</li>
+            <li>遇到的问题过于简单，无法体现架构难度</li>
+            <li>效果描述定性化，缺乏量化数据支撑</li>
+            <li>正文章节标题与题目核心词对应不上</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /content -->
+</main>
+</div><!-- /layout -->
+
+<script>
+// Sidebar active state on scroll
+const sections = document.querySelectorAll('.section');
+const navItems = document.querySelectorAll('.nav-item');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === '#' + id) {
+          item.classList.add('active');
+        }
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+navItems.forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(item.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
