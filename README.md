@@ -20,14 +20,14 @@
 - [项目固定背景.md](/Users/duanpeitong/Desktop/work/study/26_jgs_lw/项目固定背景.md)：固定参数和统一口径
 - [项目总架构说明.md](/Users/duanpeitong/Desktop/work/study/26_jgs_lw/项目总架构说明.md)：总架构说明和项目统一口径入口
 - [论文模版.md](/Users/duanpeitong/Desktop/work/study/26_jgs_lw/论文模版.md)：正文拼装模板
-- [论文题目映射表.md](/Users/duanpeitong/Desktop/work/study/26_jgs_lw/论文题目映射表.md)：题目到素材的快速映射
+- [论文真题汇编.md](/Users/duanpeitong/Desktop/work/study/26_jgs_lw/论文真题汇编.md)：历年真题、主题频率和素材映射
 
 ## 复习建议
 
 建议以 [论文主题素材](/Users/duanpeitong/Desktop/work/study/26_jgs_lw/论文主题素材) 作为唯一素材主线：
 
 - 先从技术主题理解该技术在本项目中的项目落点、架构决策和论文写法
-- 再通过 [论文题目映射表.md](/Users/duanpeitong/Desktop/work/study/26_jgs_lw/论文题目映射表.md) 将考试题目映射到 2 到 3 个技术文件
+- 再通过 [论文真题汇编.md](/Users/duanpeitong/Desktop/work/study/26_jgs_lw/论文真题汇编.md) 按真题主题选择 2 到 3 个素材文件
 - 项目基础参数统一以 [项目固定背景.md](/Users/duanpeitong/Desktop/work/study/26_jgs_lw/项目固定背景.md) 为准
 
 建议优先顺序如下：
