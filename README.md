@@ -18,7 +18,7 @@
 ## 核心入口
 
 - [项目固定背景.md](/Users/duanpeitong/Desktop/work/study/26_jgs_lw/项目固定背景.md)：固定参数和统一口径
-- [项目总架构说明与摘要模板.md](/Users/duanpeitong/Desktop/work/study/26_jgs_lw/项目总架构说明与摘要模板.md)：总架构说明和可复用摘要入口
+- [项目总架构说明.md](/Users/duanpeitong/Desktop/work/study/26_jgs_lw/项目总架构说明.md)：总架构说明和项目统一口径入口
 - [论文模版.md](/Users/duanpeitong/Desktop/work/study/26_jgs_lw/论文模版.md)：正文拼装模板
 - [论文题目映射表.md](/Users/duanpeitong/Desktop/work/study/26_jgs_lw/论文题目映射表.md)：题目到素材的快速映射
 
